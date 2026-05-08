@@ -1,0 +1,106 @@
+#!/bin/bash
+
+export PATH=$PATH:'$HOME/bin/macos'
+
+alias config_zshrc="micro $HOME/.zshrc"
+alias ..="cd ../"
+alias cd_dev="cd $HOME/bin/macos"
+alias cd_mags="cd $HOME/mount/magazine"
+
+#alias sudodisk=`sudo open '/System/Applications/Utilities/Disk Utility.app' `   
+alias e="eza -l"
+alias ee="eza -la"
+alias ac="micro $HOME/.zshrc_aliase"
+alias zsh-backup="~/bin/zsh_backup.sh"
+alias python3='/opt/homebrew/bin/python3'
+alias python='/opt/homebrew/bin/python3'
+alias pip='/opt/homebrew/bin/pip3'
+alias dns_flush="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
+alias restartadmin="pkill -f admin-server.js; cd /Users/jessi/karatehp && node admin-server.js &"
+alias hpemy="cd $HOME/karatehp"
+
+######### github gh toipps
+
+# erst files adden,dann commiten und dann push
+#gh alias set pushall '!git add -A && git commit -m "$1" && git push'
+
+
+
+############ hp emy
+
+function  conn_ionos  {
+
+rclone mount ionos:   $HOME/mount/ionos --vfs-cache-mode full   --vfs-cache-max-age 24h  --vfs-cache-max-size 10G  --vfs-read-chunk-size 128M   --dir-cache-time 2h
+
+}
+
+
+
+##############   fügt einen alias hinzu
+
+#    Anwendung: Danach tippst du nur noch: addalias flug 'cd ~/Documents/Flux_Logs'
+#    Und zack – der Alias ist drin und aktiv. Kein nerviges Gehangel mit Anführungszeichen mehr!
+
+addalias() {
+    echo "alias $1='$2'" >> ~/.zshrc_alias
+    source ~/.zshrc_alias
+   # echo "✅ Alias '$1' wurde hinzugefügt und geladen, Sascha!"
+}
+
+
+function up {       
+ if [[ "$#" < 1 ]] ; then         
+
+    cd ..      
+      else           
+
+       CDSTR=""          
+         for i in {1..$1} ; do                
+         CDSTR="../$CDSTR"          
+           done          
+             cd $CDSTR    
+
+    fi   
+ }	
+
+
+function message () {
+
+	terminal-notifier -message "$2" -title "$1"
+}
+
+function  hg () { 
+
+echo " $(history | grep $1 )" 
+}
+
+function open_festplattendienstprogrammAsAdmin () {  
+
+sudo open '/System/Applications/Utilities/Disk Utility.app'
+
+}
+
+function ch ()  {
+
+	if [ $1 = "dev" ];  then
+
+
+	echo "wechsel nach dev macos"
+
+	cd '/Users/sascha/Library/Mobile Documents/com~apple~CloudDocs/DEV/macos'
+
+	pwd
+
+fi 
+
+} 
+function mountmagazine () {
+
+	if [ -f $HOME/mount/Magazine/check ] ; then 
+
+		 "Magazine ist schon eingehängt";
+			exit 1  
+	fi
+
+	diskutil image attach /Volumes/nvme/Sascha_Data/magazine.dmg.sparsebundle --mountPoint /Users/sascha/mount/magazine
+}
