@@ -24,13 +24,13 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+ #ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "clean" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -76,9 +76,9 @@ zstyle ':omz:update' frequency 10
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="dd/mm/yyyy"
 #source /opt/homebrew/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+#source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
@@ -88,7 +88,7 @@ source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git macos )
-plugins=(git macos aliases  zsh-autosuggestions  fzf-zsh-plugin fast-syntax-highlighting)
+plugins=(git macos aliases     fzf-zsh-plugin zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -99,11 +99,11 @@ source $ZSH/oh-my-zsh.sh
  export LANG=de_DE.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='micro'
-# else
-#   export EDITOR='micro'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='micro'
+ else
+   export EDITOR='micro'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -125,7 +125,7 @@ setopt extendedglob
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
- alias zshconfig="micro ~/.zshrc"
+alias zshconfig="micro ~/.zshrc"
 ## alias ohmyzsh="mate ~/.oh-my-zsh"
 source $HOME/.zshrc_aliase
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
